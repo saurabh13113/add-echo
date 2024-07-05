@@ -6,7 +6,7 @@ For this project project, I developed two C programs aimed at manipulating audio
 ## remvocals.c: Removing Vocals from Stereo Audio Files
 The first program, remvocals.c, was designed to remove vocals from stereo PCM WAV files. The process involved the following key steps:
 
-*Reading and Preserving the Header:* The WAV file header contains critical information about the audio file. Thus, the first 44 bytes of the input file were copied directly to the output file without modification. This ensured that the output file maintained the necessary format and metadata.__
+*Reading and Preserving the Header:* The WAV file header contains critical information about the audio file. Thus, the first 44 bytes of the input file were copied directly to the output file without modification. This ensured that the output file maintained the necessary format and metadata.\
 *Processing Audio Data:* The core algorithm to remove vocals was based on the principle of channel subtraction. By subtracting the right channel's audio data from the left channel's data for each sample and averaging the result, we effectively removed the vocals, which were common to both channels. The formula used was: **combined = (left − right)/2**__
 This approach leverages the fact that vocals are often recorded identically in both channels, whereas other sounds vary between channels.__
 *Writing Processed Data:* The resulting combined audio data was then written to the output file, replacing the original stereo channels.__
