@@ -10,6 +10,7 @@ The first program, remvocals.c, was designed to remove vocals from stereo PCM WA
 *Processing Audio Data:* The core algorithm to remove vocals was based on the principle of channel subtraction. By subtracting the right channel's audio data from the left channel's data for each sample and averaging the result, we effectively removed the vocals, which were common to both channels. The formula used was: **combined = (left − right)/2**\
 This approach leverages the fact that vocals are often recorded identically in both channels, whereas other sounds vary between channels.\
 *Writing Processed Data:* The resulting combined audio data was then written to the output file, replacing the original stereo channels.\
+
 This program honed my skills in file I/O, error handling, and understanding of audio file formats. The use of fread and fwrite functions ensured efficient and reliable file operations.
 
 ## addecho.c: Adding Echo to Mono Audio Files
@@ -29,4 +30,5 @@ Throughout the project, several design choices were made to ensure robustness an
 *Binary Mode for File Operations:* Opening files in binary mode preserved the integrity of the audio data, crucial for accurate processing.\
 *Error Checking:* Comprehensive error handling was implemented to manage file operations and memory allocation, preventing crashes and ensuring graceful exits on failure.\
 *Optimized Processing:* The use of fread and fwrite allowed for efficient block processing of audio data, reducing the overhead associated with single-sample operations.\
+
 This project not only solidified my knowledge of C programming but also provided practical insights into audio processing techniques and the intricacies of working with audio file formats. The hands-on experience with command-line tools and dynamic memory has been invaluable, equipping me with skills that are directly applicable to real-world software development scenarios.
