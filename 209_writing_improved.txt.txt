@@ -1,0 +1,50 @@
+ADDECHO                                      Linux Programmer's Manual                                     	ADDECHO
+
+NAME
+	add_echo - Apply an echo effect to audio files
+
+SYNOPSIS
+	add_echo [-d delay] [-v volume_scale] inputfile outputfile
+
+DESCRIPTION
+	The ADD_ECHO command enhances audio files with an echo effect. Upon function call, users provide the inputfile 
+	containing the source audio and specify the outputfile where the echoed audio will be saved. 
+	Optional parameters -d and -v enable users to adjust the delay duration (in milliseconds) and the volume 
+	scaling factor, respectively, allowing for altering of the echo effect.
+
+	Internally, ADD_ECHO processes the input audio file, then introducing a delay between the original audio 
+	signal and its echoed sample. Buffered audio segments, synchronized with the specified delay duration, are 
+	then mixed in with the original signal. Volume adjustments are applied as necessary to ensure a proper
+	balance between the original audio and its echoed sample.
+	
+RETURN VALUES
+	The ADD_ECHO program returns 0 upon successful execution. Succesful execution is when input and output files are 
+	opened/created properly,and the echo(if any) is mixed properly with the right delay and volume(if specified) into 
+	the input audio and is written properly into the output audio.
+	Non-zero return values indicate an error condition,such as failure to open or process the input file, and 
+	are emitted accordingly.
+
+EXAMPLES
+ 	The  program shown below demonstrates the use of addecho(). The first(optional) command-line argument specifies 
+	a delay from which byte addecho() should add an echo onwards. The second (optional) argument specifies the 
+	volume by which the echo should be scaled down by.(These arguments are converted to numeric form using strtol(3), 
+	a function that converts strings to integers). The third command-line argument specifies the name of the input 
+	file from where we will read the original sound.The fourth command-line argument specifies the name of the output 
+	file to which we will write the original file and the echo to.
+ 	Some examples of the results produced  by  this  program are the following:
+
+	Apply echo effect with a delay of 5000 samples and a volume scaling factor of 3:
+	> add_echo -d 5000 -v 3 input.wav output.wav
+
+	Apply echo effect with default parameters(delay of 8000 samples and a volume scaling factor of 4):
+	> add_echo input.wav output.wav
+
+WARNINGS
+	ADD_ECHO may fail under the following conditions:
+	1. Insufficient memory to buffer audio segments.
+	2. Unsupported audio formats in the input file.
+
+BUGS
+	Known bugs of ADD_ECHO include:
+	1. Inaccurate echo effect on certain audio samples, particularly those with complex frequency spectra.
+	2. Potential distortion artifacts when applying high volume scaling factors.
